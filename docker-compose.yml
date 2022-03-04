@@ -1,0 +1,11 @@
+version: '3'
+services:
+  database:
+    image: "postgres:latest"
+    container_name: parking-control-db
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: parking-control-db
