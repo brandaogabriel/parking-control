@@ -1,15 +1,20 @@
 package com.api.parkingcontrol.dtos;
 
+import com.api.parkingcontrol.models.ParkingSpotModel;
+import com.api.parkingcontrol.validation.ExistsValue;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class ParkingSpotDto {
 
     @NotBlank
+    @ExistsValue(domainClass = ParkingSpotModel.class, fieldName = "parking_spot_number")
     private String parkingSpotNumber;
 
     @NotBlank
     @Size(max = 7)
+    @ExistsValue(domainClass = ParkingSpotModel.class, fieldName = "license_plate_car")
     private String licensePlateCar;
 
     @NotBlank
@@ -29,6 +34,13 @@ public class ParkingSpotDto {
 
     @NotBlank
     private String block;
+
+    @Deprecated
+    public ParkingSpotDto() {}
+
+    public ParkingSpotModel toModel() {
+        return new ParkingSpotModel(parkingSpotNumber, licensePlateCar, brandCar, modelCar, colorCar, responsibleName, apartment, block);
+    }
 
     public String getParkingSpotNumber() {
         return parkingSpotNumber;

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.UUID;
 
 @Entity
@@ -39,6 +40,19 @@ public class ParkingSpotModel implements Serializable {
 
     @Deprecated
     public ParkingSpotModel() {}
+
+    public ParkingSpotModel(String parkingSpotNumber, String licensePlateCar, String brandCar, String modelCar, String colorCar,
+                            String responsibleName, String apartment, String block) {
+        this.parkingSpotNumber = parkingSpotNumber;
+        this.licensePlateCar = licensePlateCar;
+        this.brandCar = brandCar;
+        this.modelCar = modelCar;
+        this.colorCar = colorCar;
+        this.registrationDate = LocalDateTime.now(ZoneId.of("UTC"));
+        this.responsibleName = responsibleName;
+        this.apartment = apartment;
+        this.block = block;
+    }
 
     public UUID getId() {
         return id;
